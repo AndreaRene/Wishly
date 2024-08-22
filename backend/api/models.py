@@ -1,33 +1,28 @@
-from django.db import models  # 1
-from django.utils.translation import gettext_lazy as _  # 2
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
-class Event(models.Model):  # 3
-    name = models.CharField(max_length=100)  # 4
-    date = models.DateField()  # 5
-    description = models.TextField(blank=True, null=True)  # 6
-    is_recurring = models.BooleanField(default=False)  # 7
+class Event(models.Model):
+    name = models.CharField(max_length=100)
+    date = models.DateField()
+    description = models.TextField(blank=True, null=True)
+    is_recurring = models.BooleanField(default=False)
     
-    class RecurrenceChoices(models.TextChoices):  # 8
-        DAILY = 'DA', _('Daily')  # 9
+    class RecurrenceChoices(models.TextChoices):
+        DAILY = 'DA', _('Daily')
         WEEKLY = 'WE', _('Weekly')
         MONTHLY = 'MO', _('Monthly')
         YEARLY = 'YE', _('Yearly')
 
-    recurrence_pattern = models.CharField(  # 10
-        max_length=2,  # 11
-        choices=RecurrenceChoices.choices,  # 12
-        blank=True,  # 13
-        null=True  # 14
+    recurrence_pattern = models.CharField(
+        max_length=2,
+        choices=RecurrenceChoices.choices,
+        blank=True,
+        null=True
     )
-    recurrence_end_date = models.DateField(blank=True, null=True)  # 15
+    recurrence_end_date = models.DateField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events', default=1)
+    visible_to_friends = models.BooleanField(default=False)
 
-    def __str__(self):  # 16
-        return self.name
-
-class WishList(models.Model):  # 17
-    name = models.CharField(max_length=100)  # 18
-    
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)  # 19
-
-    def __str__(self):  # 20
+    def __str__(self):
         return self.name
