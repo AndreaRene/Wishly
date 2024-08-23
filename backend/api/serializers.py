@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Event, Wishlist, WishlistItem
+from .models import Event, Wishlist, WishlistItem, Friendship
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -39,3 +39,8 @@ class WishlistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wishlist
         fields = ['id', 'name', 'description', 'created_at', 'updated_at', 'item', 'visible_to_friends']
+
+class FriendshipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Friendship
+        fields = ['from_user', 'to_user', 'status', 'created_at']

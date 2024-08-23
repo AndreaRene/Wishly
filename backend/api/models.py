@@ -48,3 +48,21 @@ class WishlistItem(models.Model):
 
     def __str__(self):
         return self.name
+
+class Friendship(models.Model):
+    from_user = models.ForeignKey(User, related_name='friendships_sent', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='friendships_received', on_delete=models.CASCADE)
+    
+    class Status(models.TextChoices):
+        PENDING = 'P', 'Pending'
+        ACCEPTED = 'A', 'Accepted'
+        DECLINED = 'D', 'Declined'
+
+    status = models.CharField(max_length=1, choices=Status.choices, default=Status.PENDING)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('from_user', 'to_user')
+
+    def __str__(self):
+        return f"{self.from_user} -> {self.to_user} ({self.get_status_display()})"
