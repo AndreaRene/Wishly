@@ -63,7 +63,7 @@ class WishlistListCreate(generics.ListCreateAPIView):
         ).values_list('to_user', flat=True) | Friendship.objects.filter(
             to_user=user, status='A'
         ).values_list('from_user', flat=True)
-        
+
         return Wishlist.objects.filter(
             (Q(user=user) | Q(user__in=friends, visible_to_friends=True))
         )

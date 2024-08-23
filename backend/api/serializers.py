@@ -31,7 +31,12 @@ class EventSerializer(serializers.ModelSerializer):
 class WishlistItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishlistItem
-        fields = ['id', 'name', 'description', 'link', 'price', 'store']  # Include the store field
+        fields = ['id', 'name', 'description', 'link', 'price', 'wishlist', 'category']
+
+    def validate_category(self, value):
+        if value == 'choose':
+            raise serializers.ValidationError("Please select a valid category.")
+        return value
 
 
 class WishlistSerializer(serializers.ModelSerializer):
