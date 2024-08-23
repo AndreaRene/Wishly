@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
-from .models import Event, Wishlist, WishlistItem, Friendship
+from .models import Event, Wishlist, WishlistItem, Friendship, Notification
 from django.contrib.auth.models import User
-from .serializers import EventSerializer, RegisterSerializer, UserSerializer, WishlistSerializer, WishlistItemSerializer, FriendshipSerializer
+from .serializers import EventSerializer, RegisterSerializer, UserSerializer, WishlistSerializer, WishlistItemSerializer, FriendshipSerializer, NotificationSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -115,3 +115,17 @@ class FriendshipDeleteView(generics.DestroyAPIView):
             from_user=self.kwargs['to_user_id'],
             to_user=self.request.user
         )
+    
+class NotificationListCreate(generics.ListCreateAPIView):
+    serializer_class = NotificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Notification.objects.filter(user=self.request.user)
+
+class NotificationRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = NotificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Notification.objects.filter(user=self.request.user)

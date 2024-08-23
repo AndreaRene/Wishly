@@ -11,7 +11,9 @@ from .views import (
     WishlistItemCreate,
     FriendshipListView,
     FriendshipRequestCreate,
-    FriendshipDeleteView
+    FriendshipDeleteView,
+    NotificationListCreate,
+    NotificationRetrieveUpdateDestroy
 )
 
 urlpatterns = [
@@ -27,4 +29,6 @@ urlpatterns = [
     path('friendships/', FriendshipListView.as_view(), name='friendship-list'),
     path('friendships/request/', FriendshipRequestCreate.as_view(), name='friendship-request'),
     path('friendships/delete/<int:to_user_id>/', FriendshipDeleteView.as_view(), name='friendship-delete'),
+    path('notifications/', NotificationListCreate.as_view(), name='notification-list-create'),
+    path('notifications/<int:pk>/', NotificationRetrieveUpdateDestroy.as_view(), name='notification-retrieve-update-destroy'),
 ]

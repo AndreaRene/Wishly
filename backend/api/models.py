@@ -78,3 +78,12 @@ class Friendship(models.Model):
 
     def __str__(self):
         return f"{self.from_user} -> {self.to_user} ({self.get_status_display()})"
+    
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    message = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.message

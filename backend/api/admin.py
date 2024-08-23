@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Wishlist, WishlistItem, Friendship
+from .models import Event, Wishlist, WishlistItem, Friendship, Notification
 
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
@@ -13,3 +13,4 @@ class WishlistItemAdmin(admin.ModelAdmin):
 
 admin.site.register(Event)
 admin.site.register(Friendship)
+admin.site.register(Notification)
