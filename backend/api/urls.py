@@ -5,7 +5,10 @@ from .views import (
     LoginView,
     RefreshTokenView,
     EventListCreate,
-    EventRetrieveUpdateDestroy
+    EventRetrieveUpdateDestroy,
+    WishlistListCreate,
+    WishlistRetrieveUpdateDestroy,
+    WishlistItemCreate,
 )
 
 urlpatterns = [
@@ -15,4 +18,7 @@ urlpatterns = [
     path('token/refresh/', RefreshTokenView.as_view(), name='token_refresh'),
     path('events/', EventListCreate.as_view(), name='event-list-create'),
     path('events/<int:pk>/', EventRetrieveUpdateDestroy.as_view(), name='event-retrieve-update-destroy'),
+    path('wishlists/', WishlistListCreate.as_view(), name='wishlist-list-create'),
+    path('wishlists/<int:pk>/', WishlistRetrieveUpdateDestroy.as_view(), name='wishlist-retrieve-update-destroy'),
+    path('wishlists/<int:pk>/item/', WishlistItemCreate.as_view(), name='wishlist-item-create'),
 ]

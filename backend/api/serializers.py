@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Event
-
+from .models import Event, Wishlist, WishlistItem
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -28,3 +27,15 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'name', 'date', 'description', 'is_recurring', 'recurrence_pattern', 'recurrence_end_date', 'visible_to_friends']
+
+class WishlistItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WishlistItem
+        fields = ['id', 'name', 'description', 'link', 'price', 'store']  # Include the store field
+
+
+class WishlistSerializer(serializers.ModelSerializer):
+    item = WishlistItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = Wishlist
+        fields = ['id', 'name', 'description', 'created_at', 'updated_at', 'item', 'visible_to_friends']

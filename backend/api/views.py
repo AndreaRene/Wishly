@@ -1,7 +1,7 @@
 from rest_framework import generics
-from .models import Event
+from .models import Event, Wishlist, WishlistItem
 from django.contrib.auth.models import User
-from .serializers import EventSerializer, RegisterSerializer, UserSerializer
+from .serializers import EventSerializer, RegisterSerializer, UserSerializer, WishlistSerializer, WishlistItemSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -38,3 +38,30 @@ class EventListCreate(generics.ListCreateAPIView):
 class EventRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+class WishlistListCreate(generics.ListCreateAPIView):
+    serializer_class = WishlistSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Wishlist.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+# Retrieve, Update, and Delete a Wishlist
+class WishlistRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = WishlistSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Wishlist.objects.filter(user=self.request.user)
+
+# Add item to a Wishlist
+class WishlistItemCreate(generics.CreateAPIView):
+    serializer_class = WishlistItemSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        wishlist = Wishlist.objects.get(pk=self.kwargs['pk'], user=self.request.user)
+        serializer.save(wishlist=wishlist)
