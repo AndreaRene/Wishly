@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import './Login_Signup.css';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirect
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [username, setUsername] = useState( '' );
@@ -10,9 +10,9 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState( '' );
     const [firstName, setFirstName] = useState( '' );
     const [lastName, setLastName] = useState( '' );
-    const [errorMessage, setErrorMessage] = useState( '' ); // For handling errors
+    const [errorMessage, setErrorMessage] = useState( '' );
 
-    const navigate = useNavigate(); // For navigation
+    const navigate = useNavigate();
 
     const handleSubmit = async ( event ) => {
         event.preventDefault();
@@ -23,7 +23,6 @@ const Signup = () => {
         }
 
         try {
-            // Make the POST request to your API
             const response = await axios.post( '/api/register/', {
                 username,
                 first_name: firstName,
@@ -33,7 +32,11 @@ const Signup = () => {
             } );
 
             if ( response.status === 201 ) {
-                // If account creation is successful, redirect to dashboard
+                // Store the token in localStorage
+                localStorage.setItem( 'accessToken', response.data.accessToken );
+                localStorage.setItem( 'refreshToken', response.data.refreshToken );
+
+                // Redirect to the dashboard
                 navigate( '/dashboard' );
             }
         } catch ( error ) {
@@ -114,15 +117,13 @@ const Signup = () => {
                     </p>
                 </div>
 
-
                 <button type="submit" className="button-signup" disabled={ !username || !firstName || !lastName || !email || !password || !confirmPassword || password !== confirmPassword }>
                     Signup
                 </button>
             </form>
             <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>
-
     );
-}
+};
 
 export default Signup;
