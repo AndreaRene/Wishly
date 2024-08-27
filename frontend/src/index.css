@@ -1,51 +1,114 @@
-:root {
-  -red: #8b0000;
-  -teal: #008080;
-  -goldenrod: #c18d0b;
-  -eggshel: #faf3dd;
-  -gray: #6e7f80;
-  -jet: #333;
-  -blue: #191970;
-  -cinerous: #8b7d7b;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
 
-a {
-}
-a:hover {
+:root {
+  --red: #8b0000;
+  --teal: #008080;
+  --goldenrod: #c18d0b;
+  --eggshell: #faf3dd;
+  --gray: #6e7f80;
+  --jet: #333;
+  --blue: #191970;
+  --cinerous: #8b7d7b;
+
+  /* Font variables */
+  --font-primary: 'Quicksand', sans-serif;
+  --font-secondary: 'Poppins', sans-serif;
+  --font-special: 'Fredoka', sans-serif;
+
+  /* Button Active State Colors */
+  --goldenrod-dark: #b87400;
+  --red-dark: #700000;
+  --teal-dark: #006666;
 }
 
 body {
+  font-family: var(--font-primary);
+  background-color: var(--eggshell);
+  color: var(--jet);
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 button {
+  font-family: var(--font-secondary);
+  color: var(--blue);
 }
 
-button:hover {
+.special-text {
+  font-family: var(--font-special);
+  color: var(--goldenrod);
 }
 
-button:focus,
-button:focus-visible {
+a {
+  color: var(--blue);
+  text-decoration: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+a:hover {
+  color: var(--goldenrod);
+}
+
+/* Base Button Styles */
+button {
+  width: 90%;
+  height: 55px;
+  margin: 10px auto;
+  font-size: 1.2em;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Action Button */
+.button-action {
+  background-color: var(--goldenrod);
+  color: white;
+}
+
+.button-action:hover {
+  background-color: var(--goldenrod-dark);
+}
+
+.button-action:active {
+  background-color: var(--goldenrod-dark);
+}
+
+/* Danger Button */
+.button-danger {
+  background-color: transparent;
+  color: var(--red);
+  border: 3px solid var(--red);
+}
+
+.button-danger:hover {
+  background-color: var(--red);
+  color: white;
+}
+
+.button-danger:active {
+  background-color: var(--red-dark);
+}
+
+/* Normal Button */
+.button-normal {
+  background-color: var(--teal);
+  color: var(--eggshell);
+}
+
+.button-normal:hover {
+  background-color: var(--teal-dark);
+}
+
+.button-normal:active {
+  background-color: var(--teal-dark);
 }

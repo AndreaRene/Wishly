@@ -1,0 +1,25 @@
+/* Landing Page Specific Styles */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  /* padding-top: 70px; */
+  box-sizing: border-box;
+}
+
+.landing-page h1 {
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: 90%;
+  max-width: 400px;
+  margin: 5rem auto 0;
+}
