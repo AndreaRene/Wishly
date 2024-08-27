@@ -32,11 +32,10 @@ const Signup = () => {
             } );
 
             if ( response.status === 201 ) {
-                // Store the token in localStorage
+                localStorage.setItem( 'username', username );  // Store username
                 localStorage.setItem( 'accessToken', response.data.accessToken );
                 localStorage.setItem( 'refreshToken', response.data.refreshToken );
 
-                // Redirect to the dashboard
                 navigate( '/dashboard' );
             }
         } catch ( error ) {

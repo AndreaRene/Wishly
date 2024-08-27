@@ -19,11 +19,10 @@ const Login = () => {
             } );
 
             const { access, refresh } = response.data;
+            localStorage.setItem( 'username', username );  // Store username
             localStorage.setItem( 'accessToken', access );
             localStorage.setItem( 'refreshToken', refresh );
-            localStorage.setItem( 'username', response.data.username );
 
-            // Redirect to the dashboard after successful login
             navigate( '/dashboard' );
         } catch ( error ) {
             setErrorMessage( 'Invalid username or password.' );

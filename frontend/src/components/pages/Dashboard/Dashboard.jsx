@@ -4,7 +4,6 @@ import Calendar from '../../../assets/calendar_goldenrod.svg';
 import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
-
     const [username, setUsername] = useState( '' );
 
     useEffect( () => {
@@ -15,7 +14,7 @@ const Dashboard = () => {
     return (
         <main className="dashboard-content">
             <section className="dashboard-header">
-                <h1>Hello, Emma!</h1>
+                <h1>Hello, { username }!</h1>
                 <p>What would you like to do today?</p>
             </section>
             <section className='card-group'>
