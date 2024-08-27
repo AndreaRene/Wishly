@@ -1,0 +1,24 @@
+/* Header Specific Styles */
+.header {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  background-color: var(--red);
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.icon-group {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  max-width: 400px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "wishly",
+  "version": "1.0.0",
+  "description": "The Wishlist Tracker App is designed to help users keep track of important dates such as holidays, anniversaries, and birthdays. It also allows users to create and manage wishlists associated with these events, making gift-giving and event planning easier.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && python3 manage.py runserver\"",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && python manage.py runserver"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

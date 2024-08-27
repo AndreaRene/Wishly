@@ -1,0 +1,18 @@
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--blue);
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.footer-icon-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  padding: 0 20px;
+}
