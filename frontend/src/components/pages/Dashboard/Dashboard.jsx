@@ -3,6 +3,7 @@ import Gift from '../../../assets/gift_goldenrod.svg';
 import Calendar from '../../../assets/calendar_goldenrod.svg';
 import UpcomingEvents from './UpcomingEvents';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
     const [username, setUsername] = useState( '' );
@@ -22,12 +23,12 @@ const Dashboard = () => {
                 <div className="dashboard-card">
                     <img src={ Gift } alt="Add an event" />Add an Event
                 </div>
-                <div className="dashboard-card">
+                <Link to="/view-calendar" className="dashboard-card">
                     <img src={ Calendar } alt="View My Calendar" />View My Calendar
-                </div>
+                </Link>
             </section>
 
-            < UpcomingEvents />
+            <UpcomingEvents />
 
             <section className='button-group'>
                 <button className="button-action">Manage Wishlist</button>

@@ -1,9 +1,12 @@
 .view-calendar {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .month-group {
   margin-bottom: 20px;
+  width: 80%;
 }
 
 .month-group h2 {

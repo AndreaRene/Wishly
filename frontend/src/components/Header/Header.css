@@ -28,7 +28,7 @@
   height: 7%;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 2px 0;
   background-color: var(--red);
   box-sizing: border-box;
   position: fixed;
