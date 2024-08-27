@@ -13,7 +13,7 @@ const Footer = () => {
                 <img src={ ProfileIcon } alt="Profile" className="icon" />
                 <img src={ ListIcon } alt="List" className="icon" />
                 <img src={ SettingsIcon } alt="Settings" className="icon" />
-                <img src={ LogoutIcon } alt="Logout" className="icon" />
+
             </div>
         </footer>
     );

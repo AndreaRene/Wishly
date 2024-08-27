@@ -4,7 +4,7 @@ import './Header.css';
 
 const Header = () => {
     return (
-        <header className="header">
+        <header className="large-header">
             <div className="icon-group">
                 <img src={ CalendarIcon } alt="Calendar" className="icon" />
                 <img src={ GiftIcon } alt="Gift" className="icon" />
