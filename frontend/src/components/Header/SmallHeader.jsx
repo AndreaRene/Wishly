@@ -1,25 +1,27 @@
 import './Header.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '../../assets/logout_goldenrod.svg';
-import { logout } from '../../services/authServices'; // Import the logout function
+import { logout } from '../../services/authServices';
 
 const SmallHeader = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout(); // Clear tokens and other session data
-        navigate( '/login' ); // Redirect to login page
+        logout();
+        navigate( '/login' );
     };
 
     return (
         <header className="small-header">
-            <img
-                src={ LogoutIcon }
-                alt="Logout"
-                className="icon"
-                onClick={ handleLogout } // Add the onClick handler
-                style={ { cursor: 'pointer' } } // Change cursor to pointer for better UX
-            />
+            <div className='icon-container'>
+                <img
+                    src={ LogoutIcon }
+                    alt="Logout"
+                    className="icon"
+                    onClick={ handleLogout }
+                    style={ { cursor: 'pointer' } }
+                />
+            </div>
         </header>
     );
 }

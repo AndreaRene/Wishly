@@ -1,0 +1,84 @@
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 80px 20px 20px;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.dashboard-header {
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.dashboard-header h1 {
+  margin: 5px 0;
+  font-size: 2.5em;
+  color: var(--blue);
+}
+
+.dashboard-header p {
+  font-size: 1.2em;
+  margin: 0;
+  color: var(--blue);
+}
+
+.card-group {
+  display: flex;
+  justify-content: space-around;
+  max-width: 400px;
+  width: 100%;
+}
+
+.dashboard-card {
+  background-color: var(--blue);
+  color: var(--eggshell);
+  margin: 10px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.dashboard-card img {
+  max-width: 50%;
+  margin-bottom: 10px;
+}
+
+.upcoming-events {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.upcoming-events h2 {
+  margin-bottom: 10px;
+  color: var(--red);
+  text-align: left;
+}
+
+.upcoming-events ul {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
+
+.upcoming-events li {
+  background-color: var(--eggshell);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--blue);
+  color: var(--jet);
+}

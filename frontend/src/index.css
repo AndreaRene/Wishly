@@ -57,7 +57,14 @@ a {
 a:hover {
   color: var(--goldenrod);
 }
-
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+}
 /* Base Button Styles */
 button {
   width: 90%;
