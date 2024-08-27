@@ -1,0 +1,25 @@
+.view-calendar {
+  padding: 20px;
+}
+
+.month-group {
+  margin-bottom: 20px;
+}
+
+.month-group h2 {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.month-group ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.month-group li {
+  background-color: var(--eggshell);
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--blue);
+}

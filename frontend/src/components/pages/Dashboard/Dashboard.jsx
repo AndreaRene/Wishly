@@ -1,6 +1,7 @@
 import './Dashboard.css';
 import Gift from '../../../assets/gift_goldenrod.svg';
 import Calendar from '../../../assets/calendar_goldenrod.svg';
+import UpcomingEvents from './UpcomingEvents';
 import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
@@ -26,14 +27,7 @@ const Dashboard = () => {
                 </div>
             </section>
 
-            <section className='upcoming-events'>
-                <h2>Upcoming Events</h2>
-                <ul>
-                    <li>August 31, 2024 - Mom and Dad&apos;s 30th Anniversary</li>
-                    <li>October 9, 2024 - Julie&apos;s 28th Birthday</li>
-                    <li>December 25, 2024 - Christmas</li>
-                </ul>
-            </section>
+            < UpcomingEvents />
 
             <section className='button-group'>
                 <button className="button-action">Manage Wishlist</button>
