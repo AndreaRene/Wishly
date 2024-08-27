@@ -27,28 +27,33 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'name', 'date', 'description', 'is_recurring', 'recurrence_pattern', 'recurrence_end_date', 'visible_to_friends']
-
 class WishlistItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishlistItem
-        fields = ['id', 'name', 'description', 'link', 'price', 'wishlist', 'category']
+        fields = ['name', 'description', 'link', 'price', 'store', 'category']
 
     def validate_category(self, value):
         if value == 'choose':
             raise serializers.ValidationError("Please select a valid category.")
         return value
 
-
 class WishlistSerializer(serializers.ModelSerializer):
-    item = WishlistItemSerializer(many=True, read_only=True)
+    items = WishlistItemSerializer(many=True, read_only=True)
+
     class Meta:
         model = Wishlist
-        fields = ['id', 'name', 'description', 'created_at', 'updated_at', 'item', 'visible_to_friends']
+        fields = ['id', 'name', 'description', 'created_at', 'updated_at', 'items']
+
 
 class FriendshipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Friendship
-        fields = ['from_user', 'to_user', 'status', 'created_at']
+        fields = ['id', 'from_user', 'to_user', 'status', 'created_at']
+        read_only_fields = ['from_user', 'status', 'created_at']
+
+    def create(self, validated_data):
+        validated_data['from_user'] = self.context['request'].user
+        return super().create(validated_data)
 
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
