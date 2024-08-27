@@ -1,6 +1,6 @@
-import CalendarIcon from '../../assets/calendar_goldenrod.svg';
-import GiftIcon from '../../assets/gift-goldenrod.svg';
-import './LoggedInHeader.css';
+import CalendarIcon from '../../assets/large_icons/lg_cal_gold.svg';
+import GiftIcon from '../../assets/large_icons/lg_gft_gold.svg';
+import './Header.css';
 
 const Header = () => {
     return (
