@@ -11,6 +11,7 @@ const ViewCalendar = () => {
                 const response = await axios.get( '/api/events/', {
                     headers: { Authorization: `Bearer ${localStorage.getItem( 'accessToken' )}` }
                 } );
+                console.log( 'Events:', response.data )
                 setEvents( response.data );
             } catch ( error ) {
                 console.error( 'Error fetching events:', error );
@@ -21,7 +22,7 @@ const ViewCalendar = () => {
     }, [] );
 
     const groupEventsByMonthYear = ( events ) => {
-        return events.reduce( ( acc, event ) => {
+        const grouped = events.reduce( ( acc, event ) => {
             const date = new Date( event.date );
             const monthYear = date.toLocaleString( 'default', { month: 'long', year: 'numeric' } );
 
@@ -32,6 +33,20 @@ const ViewCalendar = () => {
             acc[monthYear].push( event );
             return acc;
         }, {} );
+
+        // Sort the grouped events by date
+        const sortedKeys = Object.keys( grouped ).sort( ( a, b ) => {
+            const [monthA, yearA] = a.split( ' ' );
+            const [monthB, yearB] = b.split( ' ' );
+            return new Date( `${monthA} 1, ${yearA}` ) - new Date( `${monthB} 1, ${yearB}` );
+        } );
+
+        const sortedGrouped = {};
+        sortedKeys.forEach( key => {
+            sortedGrouped[key] = grouped[key];
+        } );
+
+        return sortedGrouped;
     };
 
     const groupedEvents = groupEventsByMonthYear( events );
@@ -46,7 +61,9 @@ const ViewCalendar = () => {
                         <h2>{ monthYear }</h2>
                         <ul>
                             { groupedEvents[monthYear].map( ( event ) => (
-                                <li key={ event.id }>{ event.name } - { new Date( event.date ).toLocaleDateString() }</li>
+                                <li key={ event.id }>
+                                    { new Date( event.date ).getDate() }th - { event.username } - { event.name }
+                                </li>
                             ) ) }
                         </ul>
                     </div>
