@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../../services/axiosInstance'; // Import the axiosInstance
 import './Events.css';
-import AddIcon from '../../../assets/add_goldenrod.svg'; // Import the add icon
+import AddIcon from '../../../assets/add_goldenrod.svg';
 
 const ViewCalendar = () => {
     const [events, setEvents] = useState( [] );
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     useEffect( () => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get( '/api/events/', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem( 'accessToken' )}` }
-                } );
+                const response = await axiosInstance.get( '/events/' );
                 setEvents( response.data );
             } catch ( error ) {
                 console.error( 'Error fetching events:', error );
@@ -23,7 +21,6 @@ const ViewCalendar = () => {
         fetchEvents();
     }, [] );
 
-    // Function to format the date with ordinal suffix
     const formatEventDate = ( date ) => {
         const day = new Date( date + 'T00:00:00' ).getDate();
         const suffix = ( day ) => {
@@ -39,7 +36,6 @@ const ViewCalendar = () => {
         return formattedDay;
     };
 
-    // Function to group and sort events by month and year
     const groupEventsByMonthYear = ( events ) => {
         const sortedEvents = events.sort( ( a, b ) => new Date( a.date ) - new Date( b.date ) );
         return sortedEvents.reduce( ( acc, event ) => {

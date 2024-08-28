@@ -15,8 +15,13 @@ const UpcomingEvents = () => {
                         Authorization: `Bearer ${token}`
                     }
                 } );
-                const sortedEvents = response.data.sort( ( a, b ) => new Date( a.date ) - new Date( b.date ) );
-                setEvents( sortedEvents.slice( 0, 3 ) ); // Get the next 3 events
+
+                if ( Array.isArray( response.data ) ) {
+                    const sortedEvents = response.data.sort( ( a, b ) => new Date( a.date ) - new Date( b.date ) );
+                    setEvents( sortedEvents.slice( 0, 3 ) ); // Get the next 3 events
+                } else {
+                    console.error( "Expected an array but got:", typeof response.data );
+                }
             } catch ( error ) {
                 console.error( "Error fetching events:", error );
             } finally {
