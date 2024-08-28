@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Events.css';
+import AddIcon from '../../../assets/add_goldenrod.svg'; // Import the add icon
 
 const ViewCalendar = () => {
     const [events, setEvents] = useState( [] );
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect( () => {
         const fetchEvents = async () => {
@@ -20,8 +23,26 @@ const ViewCalendar = () => {
         fetchEvents();
     }, [] );
 
+    // Function to format the date with ordinal suffix
+    const formatEventDate = ( date ) => {
+        const day = new Date( date + 'T00:00:00' ).getDate();
+        const suffix = ( day ) => {
+            if ( day > 3 && day < 21 ) return 'th'; // Covers 4th-20th
+            switch ( day % 10 ) {
+                case 1: return 'st';
+                case 2: return 'nd';
+                case 3: return 'rd';
+                default: return 'th';
+            }
+        };
+        const formattedDay = `${day}${suffix( day )}`;
+        return formattedDay;
+    };
+
+    // Function to group and sort events by month and year
     const groupEventsByMonthYear = ( events ) => {
-        return events.reduce( ( acc, event ) => {
+        const sortedEvents = events.sort( ( a, b ) => new Date( a.date ) - new Date( b.date ) );
+        return sortedEvents.reduce( ( acc, event ) => {
             const date = new Date( event.date );
             const monthYear = date.toLocaleString( 'default', { month: 'long', year: 'numeric' } );
 
@@ -46,12 +67,19 @@ const ViewCalendar = () => {
                         <h2>{ monthYear }</h2>
                         <ul>
                             { groupedEvents[monthYear].map( ( event ) => (
-                                <li key={ event.id }>{ event.name } - { new Date( event.date ).toLocaleDateString() }</li>
+                                <li key={ event.id }>
+                                    { formatEventDate( event.date ) } - { event.username } : { event.name }
+                                </li>
                             ) ) }
                         </ul>
                     </div>
                 ) )
             ) }
+
+            {/* Floating Add Event Button */ }
+            <div className="floating-button" onClick={ () => navigate( '/new-event' ) }>
+                <img src={ AddIcon } alt="Add Event" />
+            </div>
         </div>
     );
 };

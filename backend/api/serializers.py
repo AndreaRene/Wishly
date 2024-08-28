@@ -23,10 +23,25 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
 
+from rest_framework import serializers
+
 class EventSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+
     class Meta:
         model = Event
-        fields = ['id', 'name', 'date', 'description', 'is_recurring', 'recurrence_pattern', 'recurrence_end_date', 'visible_to_friends']
+        fields = ['id', 'name', 'date', 'description', 'is_recurring', 'recurrence_pattern', 'recurrence_end_date', 'visible_to_friends', 'user', 'username']
+
+    def validate(self, data):
+        if data.get('is_recurring'):
+            if not data.get('recurrence_end_date'):
+                raise serializers.ValidationError("Recurrence end date is required for recurring events.")
+        else:
+            data['recurrence_end_date'] = None  # Explicitly set it to None if not recurring
+
+        return data
+
+
 class WishlistItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishlistItem
