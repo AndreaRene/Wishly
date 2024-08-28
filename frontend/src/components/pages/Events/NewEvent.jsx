@@ -1,17 +1,14 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../../services/axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import './Events.css';
+import './events.css';
 
 const NewEvent = () => {
     const [name, setName] = useState( '' );
     const [date, setDate] = useState( '' );
     const [description, setDescription] = useState( '' );
-    // const [isRecurring, setIsRecurring] = useState( false );
-    // const [recurrencePattern, setRecurrencePattern] = useState( '' );
-    // const [recurrenceEndDate, setRecurrenceEndDate] = useState( '' );
     const [visibleToFriends, setVisibleToFriends] = useState( false );
-    const [username, setUsername] = useState( '' ); // State for username
+    const [username, setUsername] = useState( '' );
 
     const navigate = useNavigate();
 
@@ -31,24 +28,11 @@ const NewEvent = () => {
             name,
             date: formattedDate,
             description,
-            // is_recurring: isRecurring,
             visible_to_friends: visibleToFriends,
         };
 
-        // if ( isRecurring ) {
-        //     eventData.recurrence_pattern = recurrencePattern;
-
-        //     if ( recurrenceEndDate ) {
-        //         const localEndDate = new Date( recurrenceEndDate );
-        //         localEndDate.setMinutes( localEndDate.getMinutes() + localEndDate.getTimezoneOffset() );
-        //         eventData.recurrence_end_date = localEndDate.toISOString().split( 'T' )[0];
-        //     }
-        // }
-
         try {
-            await axios.post( '/api/events/', eventData, {
-                headers: { Authorization: `Bearer ${localStorage.getItem( 'accessToken' )}` },
-            } );
+            await axiosInstance.post( '/events/', eventData );
             navigate( '/view-calendar' );
         } catch ( error ) {
             console.error( 'Error creating event:', error );
@@ -74,32 +58,6 @@ const NewEvent = () => {
                     Description:
                     <textarea value={ description } onChange={ ( e ) => setDescription( e.target.value ) } />
                 </label>
-                {/* <div className="checkbox-group">
-                    <input
-                        type="checkbox"
-                        checked={ isRecurring }
-                        onChange={ ( e ) => setIsRecurring( e.target.checked ) }
-                    />
-                    <label>Is this event recurring</label>
-                </div>
-                { isRecurring && (
-                    <>
-                        <label>
-                            Recurrence Pattern:
-                            <select value={ recurrencePattern } onChange={ ( e ) => setRecurrencePattern( e.target.value ) }>
-                                <option value="">None</option>
-                                <option value="DA">Daily</option>
-                                <option value="WE">Weekly</option>
-                                <option value="MO">Monthly</option>
-                                <option value="YE">Yearly</option>
-                            </select>
-                        </label>
-                        <label>
-                            Recurrence End Date:
-                            <input type="date" value={ recurrenceEndDate } onChange={ ( e ) => setRecurrenceEndDate( e.target.value ) } />
-                        </label>
-                    </>
-                ) } */}
                 <div className="checkbox-group">
                     <input
                         type="checkbox"

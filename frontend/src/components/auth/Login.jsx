@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Login_Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../services/axiosInstance';
 
 const Login = () => {
     const [username, setUsername] = useState( '' );
@@ -13,13 +13,13 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post( '/api/login/', {
+            const response = await axiosInstance.post( '/login/', {
                 username: username,
                 password: password,
             } );
 
             const { access, refresh } = response.data;
-            localStorage.setItem( 'username', username );  // Store username
+            localStorage.setItem( 'username', username );
             localStorage.setItem( 'accessToken', access );
             localStorage.setItem( 'refreshToken', refresh );
 

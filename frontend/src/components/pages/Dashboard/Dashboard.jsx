@@ -20,19 +20,27 @@ const Dashboard = () => {
                 <p>What would you like to do today?</p>
             </section>
             <section className='card-group'>
-                <Link to="/new-event" className='dashboard-card'>
-                    <img src={ Gift } alt="Add an event" />Add an Event
+                <Link to="/new-event" className='dashboard-card-link'>
+                    <div className='dashboard-card'>
+                        <img src={ Gift } alt="Add an event" />Add an Event
+                    </div>
                 </Link>
-                <Link to="/view-calendar" className="dashboard-card">
-                    <img src={ Calendar } alt="View My Calendar" />View My Calendar
+                <Link to="/view-calendar" className="dashboard-card-link">
+                    <div className='dashboard-card'>
+                        <img src={ Calendar } alt="View My Calendar" />View My Calendar
+                    </div>
                 </Link>
             </section>
 
             <UpcomingEvents />
 
             <section className='button-group'>
-                <button className="button-action">Manage Wishlist</button>
-                <button className="button-normal">Manage Friendships</button>
+                <Link to="/wishlist" className="button-link">
+                    <button className="button-action">Manage Wishlist</button>
+                </Link>
+                <Link to="/friendships" className="button-link">
+                    <button className="button-normal">Manage Friendships</button>
+                </Link>
             </section>
         </main>
     );

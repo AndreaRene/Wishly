@@ -4,21 +4,6 @@ const axiosInstance = axios.create({
   baseURL: '/api',
 });
 
-// Request interceptor to add the access token to headers
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// Response interceptor to handle expired tokens and refresh them
 axiosInstance.interceptors.response.use(
   (response) => {
     return response;
@@ -31,17 +16,19 @@ axiosInstance.interceptors.response.use(
 
       try {
         const refreshToken = localStorage.getItem('refreshToken');
+        console.log('Attempting to refresh token with:', refreshToken);
+
         const response = await axios.post('/api/token/refresh/', {
           refresh: refreshToken,
         });
 
-        const newAccessToken = response.data.access;
-        localStorage.setItem('accessToken', newAccessToken);
+        const { access, refresh } = response.data;
 
-        axiosInstance.defaults.headers[
-          'Authorization'
-        ] = `Bearer ${newAccessToken}`;
-        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        localStorage.setItem('accessToken', access);
+        localStorage.setItem('refreshToken', refresh);
+
+        axiosInstance.defaults.headers['Authorization'] = `Bearer ${access}`;
+        originalRequest.headers['Authorization'] = `Bearer ${access}`;
 
         return axiosInstance(originalRequest);
       } catch (refreshError) {
