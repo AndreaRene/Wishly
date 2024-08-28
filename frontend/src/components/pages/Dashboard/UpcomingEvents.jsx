@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Dashboard.css';
 
 const UpcomingEvents = () => {
     const [events, setEvents] = useState( [] );
