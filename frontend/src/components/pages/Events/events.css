@@ -41,8 +41,6 @@
   position: fixed;
   bottom: 100px;
   right: 20px;
-  /* width: 60px;
-  height: 60px; */
   background-color: var(--red);
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -53,4 +51,114 @@
   z-index: 1000;
 }
 
-/* Additional CSS to ensure layout correctness */
+/* NewEvent.css */
+
+/* Container for the new event form */
+.new-event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+  padding: 80px 20px 20px;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.new-event-header {
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.new-event-header h1 {
+  margin: 5px 0;
+  font-size: 2.5em;
+  color: var(--blue);
+}
+
+.new-event-header p {
+  font-size: 1.2em;
+  margin: 0;
+  color: var(--blue);
+}
+/* Form styles */
+.new-event-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--eggshell);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Input field styles */
+.new-event-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+.new-event-form input[type='text'],
+.new-event-form input[type='date'],
+.new-event-form textarea,
+.new-event-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid var(--gray);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.new-event-form input[type='text']:focus,
+.new-event-form input[type='date']:focus,
+.new-event-form textarea:focus,
+.new-event-form select:focus {
+  border-color: var(--teal);
+  outline: none;
+  box-shadow: 0 0 5px var(--teal);
+}
+
+.new-event-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Checkbox styles */
+.new-event-form input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Button styles */
+.new-event-form button[type='submit'] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--goldenrod);
+  color: var(--eggshell);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.new-event-form button[type='submit']:hover {
+  background-color: var(--dark-goldenrod);
+}
+
+.new-event-form button[type='submit']:disabled {
+  background-color: var(--gray);
+  cursor: not-allowed;
+}
