@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import './Login_Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../services/axiosInstance';
 
 const Signup = () => {
     const [username, setUsername] = useState( '' );
@@ -23,12 +24,12 @@ const Signup = () => {
         }
 
         try {
-            const response = await axios.post( '/api/register/', {
+            const response = await axiosInstance.post( '/register/', {
                 username,
                 first_name: firstName,
                 last_name: lastName,
                 email,
-                password
+                password,
             } );
 
             if ( response.status === 201 ) {

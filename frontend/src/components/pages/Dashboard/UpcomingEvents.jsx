@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
 import './Dashboard.css';
 
@@ -10,7 +9,7 @@ const UpcomingEvents = () => {
     useEffect( () => {
         const fetchEvents = async () => {
             try {
-                const response = await axiosInstance.get( '/events' );
+                const response = await axiosInstance.get( '/events/' );
 
                 if ( Array.isArray( response.data ) ) {
                     const sortedEvents = response.data.sort( ( a, b ) => new Date( a.date ) - new Date( b.date ) );

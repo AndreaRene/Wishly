@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../../services/axiosInstance'; // Import the axiosInstance
-import './events.css';
+import axiosInstance from '../../../services/axiosInstance';
+
 import AddIcon from '../../../assets/add_goldenrod.svg';
+
+import './events.css';
 
 const ViewCalendar = () => {
     const [events, setEvents] = useState( [] );
