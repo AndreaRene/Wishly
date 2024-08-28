@@ -4,6 +4,18 @@ import './Wishlist.css';
 import AddIcon from '../../../assets/add_goldenrod.svg';
 import { useNavigate } from 'react-router-dom';
 
+// Mapping object for category display names
+const categoryDisplayNames = {
+    electronics: 'Electronics',
+    books: 'Books',
+    clothing: 'Clothing',
+    home: 'Home & Kitchen',
+    toys: 'Toys & Games',
+    sports: 'Sports & Outdoors',
+    beauty: 'Beauty & Personal Care',
+    other: 'Other'
+};
+
 const Wishlist = () => {
     const [wishlist, setWishlist] = useState( { items: [] } );
     const [loading, setLoading] = useState( true );
@@ -38,10 +50,10 @@ const Wishlist = () => {
             </section>
             <div className="wishlist-details">
                 <ul>
-                    { wishlist && wishlist.items && wishlist.items.map( ( item, index ) => (
+                    { wishlist.items.map( ( item, index ) => (
                         <li key={ index }>
                             <h3>{ item.name }</h3>
-                            <p>Category: { item.category }</p>
+                            <p>Category: { categoryDisplayNames[item.category] }</p> {/* Display full category name */ }
                             { item.price && <p>Price: ${ item.price }</p> }
                         </li>
                     ) ) }

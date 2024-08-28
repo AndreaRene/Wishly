@@ -3,9 +3,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 80px 20px 20px;
+  padding: 80px 20px;
   width: 100%;
-  height: calc(100vh - 60px);
+  min-height: 100vh;
   max-width: 100vw;
   box-sizing: border-box;
 }
@@ -13,8 +13,8 @@
 .month-group {
   width: 100%;
   max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
+  /* margin: 20px auto; */
+  padding: 10px 20px;
   border-radius: 10px;
   box-sizing: border-box;
 }
