@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import axiosInstance from '../../../services/axiosInstance';
 import './Dashboard.css';
 
 const UpcomingEvents = () => {
@@ -9,12 +10,7 @@ const UpcomingEvents = () => {
     useEffect( () => {
         const fetchEvents = async () => {
             try {
-                const token = localStorage.getItem( 'accessToken' );
-                const response = await axios.get( '/api/events', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                } );
+                const response = await axiosInstance.get( '/events' );
 
                 if ( Array.isArray( response.data ) ) {
                     const sortedEvents = response.data.sort( ( a, b ) => new Date( a.date ) - new Date( b.date ) );

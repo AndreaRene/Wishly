@@ -38,7 +38,7 @@ const Dashboard = () => {
                 <Link to="/wishlist" className="button-link">
                     <button className="button-action">Manage Wishlist</button>
                 </Link>
-                <Link to="/manage-friendships" className="button-link">
+                <Link to="/friendships" className="button-link">
                     <button className="button-normal">Manage Friendships</button>
                 </Link>
             </section>
