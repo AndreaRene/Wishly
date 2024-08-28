@@ -20,9 +20,9 @@ const Dashboard = () => {
                 <p>What would you like to do today?</p>
             </section>
             <section className='card-group'>
-                <div className="dashboard-card">
+                <Link to="/new-event" className='dashboard-card'>
                     <img src={ Gift } alt="Add an event" />Add an Event
-                </div>
+                </Link>
                 <Link to="/view-calendar" className="dashboard-card">
                     <img src={ Calendar } alt="View My Calendar" />View My Calendar
                 </Link>

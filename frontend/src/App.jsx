@@ -8,6 +8,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import ViewCalendar from './components/pages/Events/ViewCalendar';
+import NewEvent from './components/pages/Events/NewEvent';
 import Footer from './components/Footer/Footer';
 import PrivateRoute from './components/auth/PrivateRoute';
 
@@ -49,7 +50,16 @@ function AppContent() {
             </PrivateRoute>
           }
         />
-        <Route path="view-calendar" element={ <ViewCalendar /> } />
+        <Route path="/view-calendar"
+          element={
+            <PrivateRoute>
+              <ViewCalendar />
+            </PrivateRoute> } />
+        <Route path="/new-event"
+          element={
+            <PrivateRoute>
+              <NewEvent />
+            </PrivateRoute> } />
         {/* Add more routes here */ }
       </Routes>
       { !isNoFooterRoute && <Footer /> }

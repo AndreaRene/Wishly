@@ -30,6 +30,11 @@ const UpcomingEvents = () => {
         return <p>Loading events...</p>;
     }
 
+    const formatEventDate = ( date ) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date( date + 'T00:00:00' ).toLocaleDateString( 'en-US', options );
+    };
+
     return (
         <section className='upcoming-events'>
             <h2>Upcoming Events</h2>
@@ -37,7 +42,7 @@ const UpcomingEvents = () => {
                 <ul>
                     { events.map( ( event, index ) => (
                         <li key={ index }>
-                            { new Date( event.date ).toLocaleDateString() } - { event.name }
+                            { formatEventDate( event.date ) } - { event.name }
                         </li>
                     ) ) }
                 </ul>

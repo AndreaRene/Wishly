@@ -35,3 +35,22 @@
   font-size: 1em;
   text-align: left;
 }
+
+/* Floating Button Style */
+.floating-button {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  /* width: 60px;
+  height: 60px; */
+  background-color: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Additional CSS to ensure layout correctness */
