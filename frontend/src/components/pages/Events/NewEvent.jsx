@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axiosInstance from '../../../services/axiosInstance'; // Import your axiosInstance
+import axiosInstance from '../../../services/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import './events.css';
 
@@ -32,7 +32,7 @@ const NewEvent = () => {
         };
 
         try {
-            await axiosInstance.post( '/events/', eventData ); // Use axiosInstance here
+            await axiosInstance.post( '/events/', eventData );
             navigate( '/view-calendar' );
         } catch ( error ) {
             console.error( 'Error creating event:', error );

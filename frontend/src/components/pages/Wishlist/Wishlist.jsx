@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import axiosInstance from '../../../services/axiosInstance'; // Updated to use axiosInstance
+import axiosInstance from '../../../services/axiosInstance';
 import './Wishlist.css';
 import AddIcon from '../../../assets/add_goldenrod.svg';
 import { useNavigate } from 'react-router-dom';
 
-// Mapping object for category display names
 const categoryDisplayNames = {
     electronics: 'Electronics',
     books: 'Books',
@@ -53,7 +52,7 @@ const Wishlist = () => {
                     { wishlist.items.map( ( item, index ) => (
                         <li key={ index }>
                             <h3>{ item.name }</h3>
-                            <p>Category: { categoryDisplayNames[item.category] }</p> {/* Display full category name */ }
+                            <p>Category: { categoryDisplayNames[item.category] }</p>
                             { item.price && <p>Price: ${ item.price }</p> }
                         </li>
                     ) ) }

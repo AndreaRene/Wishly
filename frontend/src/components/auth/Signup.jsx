@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 import './Login_Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../services/axiosInstance';
@@ -33,7 +32,7 @@ const Signup = () => {
             } );
 
             if ( response.status === 201 ) {
-                localStorage.setItem( 'username', username );  // Store username
+                localStorage.setItem( 'username', username );
                 localStorage.setItem( 'accessToken', response.data.accessToken );
                 localStorage.setItem( 'refreshToken', response.data.refreshToken );
 

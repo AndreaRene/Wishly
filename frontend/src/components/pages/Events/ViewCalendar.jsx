@@ -26,7 +26,7 @@ const ViewCalendar = () => {
     const formatEventDate = ( date ) => {
         const day = new Date( date + 'T00:00:00' ).getDate();
         const suffix = ( day ) => {
-            if ( day > 3 && day < 21 ) return 'th'; // Covers 4th-20th
+            if ( day > 3 && day < 21 ) return 'th';
             switch ( day % 10 ) {
                 case 1: return 'st';
                 case 2: return 'nd';

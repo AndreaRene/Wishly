@@ -4,7 +4,6 @@ const axiosInstance = axios.create({
   baseURL: '/api',
 });
 
-// Request interceptor to add the access token to headers
 axiosInstance.interceptors.response.use(
   (response) => {
     return response;
@@ -28,7 +27,6 @@ axiosInstance.interceptors.response.use(
         localStorage.setItem('accessToken', access);
         localStorage.setItem('refreshToken', refresh);
 
-        // Retry the original request with the new access token
         axiosInstance.defaults.headers['Authorization'] = `Bearer ${access}`;
         originalRequest.headers['Authorization'] = `Bearer ${access}`;
 
