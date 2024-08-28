@@ -6,7 +6,7 @@ const API_URL = '/api'; // Replace with your actual API base URL
 const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register/`, userData);
   if (response.data.token) {
-    localStorage.setItem('token', response.data.token); // Store token in localStorage
+    localStorage.setItem('token', response.data.token);
   }
   return response.data;
 };
@@ -15,14 +15,16 @@ const register = async (userData) => {
 const login = async (userData) => {
   const response = await axios.post(`${API_URL}/login/`, userData);
   if (response.data.token) {
-    localStorage.setItem('token', response.data.token); // Store token in localStorage
+    localStorage.setItem('token', response.data.token);
   }
   return response.data;
 };
 
 // Logout user
 const logout = () => {
-  localStorage.removeItem('token');
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+  localStorage.removeItem('username');
 };
 
 // Check if the user is authenticated
