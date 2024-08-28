@@ -9,6 +9,7 @@ import Signup from './components/auth/Signup';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import ViewCalendar from './components/pages/Events/ViewCalendar';
 import NewEvent from './components/pages/Events/NewEvent';
+import Wishlist from './components/pages/Wishlist/Wishlist';
 import Footer from './components/Footer/Footer';
 import PrivateRoute from './components/auth/PrivateRoute';
 
@@ -59,6 +60,11 @@ function AppContent() {
           element={
             <PrivateRoute>
               <NewEvent />
+            </PrivateRoute> } />
+        <Route path="/wishlist"
+          element={
+            <PrivateRoute>
+              <Wishlist />
             </PrivateRoute> } />
         {/* Add more routes here */ }
       </Routes>

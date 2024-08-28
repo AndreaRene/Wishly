@@ -65,6 +65,11 @@ a:hover {
   max-width: 400px;
   margin-top: 20px;
 }
+
+.button-link {
+  display: flex;
+  justify-content: center;
+}
 /* Base Button Styles */
 button {
   width: 90%;
@@ -118,4 +123,21 @@ button {
 
 .button-normal:active {
   background-color: var(--teal-dark);
+}
+
+/* Floating Button Style */
+.floating-button {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background-color: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
 }

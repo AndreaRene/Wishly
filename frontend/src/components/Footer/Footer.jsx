@@ -12,7 +12,9 @@ const Footer = () => {
                 <Link to="/view-calendar">
                     <img src={ CalendarIcon } alt="Calendar" className="icon" />
                 </Link>
-                <img src={ ListIcon } alt="List" className="icon" />
+                <Link to="/wishlist">
+                    <img src={ ListIcon } alt="List" className="icon" />
+                </Link>
                 <Link to="/dashboard">
                     <img src={ ProfileIcon } alt="Profile" className="icon" />
                 </Link>
