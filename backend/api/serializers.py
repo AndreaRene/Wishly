@@ -37,7 +37,7 @@ class EventSerializer(serializers.ModelSerializer):
             if not data.get('recurrence_end_date'):
                 raise serializers.ValidationError("Recurrence end date is required for recurring events.")
         else:
-            data['recurrence_end_date'] = None  # Explicitly set it to None if not recurring
+            data['recurrence_end_date'] = None 
 
         return data
 

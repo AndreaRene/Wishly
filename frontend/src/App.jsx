@@ -11,6 +11,8 @@ import ViewCalendar from './components/pages/Events/ViewCalendar';
 import NewEvent from './components/pages/Events/NewEvent';
 import Wishlist from './components/pages/Wishlist/Wishlist';
 import NewWishlistItem from './components/pages/Wishlist/NewWishlistItem';
+import FriendshipsPage from './components/pages/Friendships/Friendship';
+import Settings from './components/pages/Settings/Settings';
 import Footer from './components/Footer/Footer';
 import PrivateRoute from './components/auth/PrivateRoute';
 
@@ -72,7 +74,16 @@ function AppContent() {
             <PrivateRoute>
               <NewWishlistItem />
             </PrivateRoute> } />
-        {/* Add more routes here */ }
+        <Route path="/settings"
+          element={
+            <PrivateRoute>
+              <Settings />
+            </PrivateRoute> } />
+        <Route path="/friendships"
+          element={
+            <PrivateRoute>
+              <FriendshipsPage />
+            </PrivateRoute> } />
       </Routes>
       { !isNoFooterRoute && <Footer /> }
     </>
