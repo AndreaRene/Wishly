@@ -48,7 +48,7 @@ const NewEvent = () => {
             <form onSubmit={ handleSubmit } className="new-event-form">
                 <label>
                     Event Name:
-                    <input type="text" value={ name } onChange={ ( e ) => setName( e.target.value ) } required />
+                    <input type="text" value={ name } onChange={ ( e ) => setName( e.target.value ) } required placeholder='What are we doing?' />
                 </label>
                 <label>
                     Date:
@@ -56,7 +56,7 @@ const NewEvent = () => {
                 </label>
                 <label>
                     Description:
-                    <textarea value={ description } onChange={ ( e ) => setDescription( e.target.value ) } />
+                    <textarea value={ description } onChange={ ( e ) => setDescription( e.target.value ) } placeholder='Where are we going?' />
                 </label>
                 <div className="checkbox-group">
                     <input

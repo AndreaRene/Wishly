@@ -9,10 +9,9 @@ import './Footer.css';
 const Footer = () => {
     const navigate = useNavigate();
 
-    // Debounce navigation function to prevent rapid successive clicks
     const debouncedNavigate = debounce( ( path ) => {
         navigate( path );
-    }, 300 ); // Adjust the debounce time as needed
+    }, 300 );
 
     return (
         <footer className="footer">

@@ -58,27 +58,27 @@ const NewWishlistItem = () => {
             </section>
             <form onSubmit={ handleSubmit } className="new-wishlist-item-form">
                 <label>
-                    Item Name:
-                    <input type="text" value={ name } onChange={ ( e ) => setName( e.target.value ) } required />
+                    Item Name(required):
+                    <input type="text" value={ name } onChange={ ( e ) => setName( e.target.value ) } required placeholder='What would you like?' />
                 </label>
                 <label>
                     Description:
-                    <textarea value={ description } onChange={ ( e ) => setDescription( e.target.value ) } />
+                    <textarea value={ description } onChange={ ( e ) => setDescription( e.target.value ) } placeholder='Tell your friends about your item!' />
                 </label>
                 <label>
                     Link:
-                    <input type="url" value={ link } onChange={ ( e ) => setLink( e.target.value ) } onBlur={ handleLinkBlur } />
+                    <input type="url" value={ link } onChange={ ( e ) => setLink( e.target.value ) } onBlur={ handleLinkBlur } placeholder='https://' />
                 </label>
                 <label>
                     Price:
-                    <input type="number" step="0.01" value={ price } onChange={ ( e ) => setPrice( e.target.value ) } />
+                    <input type="number" step="0.01" value={ price } onChange={ ( e ) => setPrice( e.target.value ) } placeholder='$' />
                 </label>
                 <label>
                     Store:
-                    <input type="text" value={ store } onChange={ ( e ) => setStore( e.target.value ) } />
+                    <input type="text" value={ store } onChange={ ( e ) => setStore( e.target.value ) } placeholder='Where can they find it?' />
                 </label>
                 <label>
-                    Category:
+                    Category(required):
                     <select value={ category } onChange={ ( e ) => setCategory( e.target.value ) } required>
                         <option value="choose" disabled>Choose a Category</option>
                         <option value="electronics">Electronics</option>
